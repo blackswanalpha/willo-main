@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["kernel"]
+default-members = ["."]
+
+[package]
+name = "willo"
+version = "0.1.0"
+edition = "2024"
+description = "Universal runner: builds a BIOS disk image from a kernel ELF and launches QEMU."
+
+[dependencies]
+bootloader = "0.11.12"
+fatfs = "0.3"
+
+# The BIOS bootloader's BIOS stages have a hard ceiling on the ELF size they
+# can load over disk reads. A 5 MB+ kernel.elf with full debuginfo silently
+# fails to boot (no serial output at all). Stripping debuginfo keeps the
+# kernel ELF small (~150 KB) so dev builds boot identically to release.
+[profile.dev.package.kernel]
+debug = false
+strip = "debuginfo"

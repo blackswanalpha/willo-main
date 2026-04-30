@@ -1,0 +1,1 @@
+Willo is a Rust-first, no_std hobby kernel for x86_64, built in the spirit of Phil Opp's "Writing an OS in Rust". It BIOS-boots under QEMU, paints a bitmap framebuffer, runs a cooperative async executor, mounts a FAT32 data disk via a tiny VFS, and drops into a shell. M1–M10 ship; goal: desktop OS.
